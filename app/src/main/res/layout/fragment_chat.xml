@@ -1,0 +1,126 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/cutomgradient"
+    tools:context="View.ViewChat.FragmentChat">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearDynamic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            >
+
+            <LinearLayout
+                android:id="@+id/ln"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="40dp"
+                >
+
+                <TextView
+                    android:id="@+id/textViewOutGoingMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="исходящие сообщения"
+                    android:gravity="center"
+                    android:background="@drawable/outgoingmessageview"
+                    android:visibility="invisible"
+                    tools:visibility="visible"
+                    />
+                <TextView
+                    android:id="@+id/IncommingMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginLeft="10dp"
+                    android:visibility="invisible"
+                    android:background="@drawable/incommingmessageview"
+                    android:text="входящие сообщения"
+                    android:textColor="@color/white"
+                    android:layout_gravity="right"
+                    tools:visibility="visible"
+
+                    />
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
+    <EditText
+        android:id="@+id/editTextMessage"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/buttonSendMessage"
+        app:layout_constraintBottom_toTopOf="@id/constraintLayoutButtNavMenu"
+        android:layout_marginBottom="5dp"
+        android:hint="    Введите сообщение"
+        android:background="@drawable/edittextcustom"
+        />
+
+    <ImageView
+        android:id="@+id/buttonSendMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/constraintLayoutButtNavMenu"
+        app:layout_constraintLeft_toRightOf="@id/editTextMessage"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_send"
+        android:text="Send"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutButtNavMenu"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        >
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationMenu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/purple_500"
+            app:itemTextColor="@color/white"
+            android:backgroundTint="@color/white"
+            app:itemIconTint="@color/white"
+            app:itemIconSize="30sp"
+            app:menu="@menu/menu"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

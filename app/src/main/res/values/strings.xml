@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MessageApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="textViewProviderFragment">Поставщик - если Вы являетесь поставщиком и готовы предложить хорошую цену</string>
+    <string name="descriptionChoiseUser">Заказчик - если Вы в поиске хорошего товара по наименьшей цене</string>
+</resources>

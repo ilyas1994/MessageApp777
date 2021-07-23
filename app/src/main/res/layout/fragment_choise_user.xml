@@ -1,0 +1,66 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="View.ViewChat.ViewChoiseUser.FragmentChoiseUser">
+
+    <ImageView
+        android:id="@+id/imageViewCustomer"
+        android:layout_width="120dp"
+        android:layout_height="70dp"
+        android:background="@drawable/viewcustomerdesign"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="50dp"
+        />
+
+    <TextView
+        android:id="@+id/textViewCustomer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Заказчик"
+        app:layout_constraintTop_toTopOf="@id/imageViewCustomer"
+        app:layout_constraintLeft_toLeftOf="@id/imageViewCustomer"
+        app:layout_constraintRight_toRightOf="@id/imageViewCustomer"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewCustomer"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        />
+
+    <ImageView
+        android:id="@+id/imageViewProvider"
+        android:layout_width="120dp"
+        android:layout_height="70dp"
+        android:background="@drawable/viewproviderdesign"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/imageViewCustomer"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+    <TextView
+        android:id="@+id/textViewProvider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Поставщик"
+        app:layout_constraintTop_toTopOf="@id/imageViewProvider"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewProvider"
+        app:layout_constraintLeft_toLeftOf="@id/imageViewProvider"
+        app:layout_constraintRight_toRightOf="@id/imageViewProvider"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        />
+
+    <Button
+        android:id="@+id/buttonInstruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Инструкция"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageViewCustomer"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="16dp"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>
