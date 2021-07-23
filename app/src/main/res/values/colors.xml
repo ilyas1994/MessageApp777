@@ -10,4 +10,5 @@
     <color name="customRectangleEditText">#E4E1E1</color>
     <color name="colorGreen">#DD4CAF50</color>
     <color name="backgroundFragmentChoiseFragmentCustomer">#652196F3</color>
+    <color name="backPhone">#f5f5f5</color>
 </resources>

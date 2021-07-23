@@ -1,0 +1,60 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="View.ViewChat.CreateNewAppDescription.FragmentCreateNewAppDescription">
+
+    <LinearLayout
+        android:id="@+id/mainLinear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/textviewDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:textSize="15sp"
+            android:text="Нажмите + если хотите добавить позицию"
+            />
+
+        <LinearLayout
+            android:id="@+id/linearCreateNewApp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+
+            >
+
+            <EditText
+                android:id="@+id/dynamiceditTextPosition"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:hint="Одна позиция для заполнения"
+                android:layout_marginLeft="6dp"
+                android:paddingLeft="10dp"
+                android:background="@drawable/edittextadddescription"
+                />
+
+            <ImageView
+                android:id="@+id/imageviewNewLinear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/imageviewcreatenewedit"
+                android:src="@drawable/ic_baseline_add"
+                />
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</ScrollView>

@@ -1,5 +1,6 @@
 package com.example.messageapp
 
+import View.ViewChat.CreateNewAppDescription.FragmentCreateNewAppDescription
 import View.ViewChat.FragmentChat
 import View.ViewChat.ViewCreateNewApp.FragmentCreateNewApp
 import View.ViewChat.ViewCustomer.FragmentCustomer
@@ -34,6 +35,7 @@ class Navigation_menu : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         myAct = (activity as MainActivity)
+        val routerSwitchFragment = Router()
         val resetbutton: Button = view.findViewById(R.id.resetbutton)
         resetbutton.setOnClickListener {
             myAct.sharedPreferences.edit().clear().apply()
@@ -60,7 +62,10 @@ class Navigation_menu : Fragment() {
 
         }
         nav_favorite.setOnClickListener {
-
+            requireActivity().supportFragmentManager.beginTransaction().apply {
+                replace(R.id.emptyFragment, routerSwitchFragment.nextFragment(FragmentCreateNewAppDescription()))
+                commit()
+            }
         }
         nav_setting.setOnClickListener {
             myAct.switchFragment(FragmentCustomer())
