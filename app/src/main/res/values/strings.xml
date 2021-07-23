@@ -4,4 +4,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="textViewProviderFragment">Поставщик - если Вы являетесь поставщиком и готовы предложить хорошую цену</string>
     <string name="descriptionChoiseUser">Заказчик - если Вы в поиске хорошего товара по наименьшей цене</string>
+    <string name="chat">Чат</string>
+    <string name="myApp">Заявки</string>
+    <string name="Create">Создать</string>
+    <string name="favorite">Избранное</string>
+    <string name="setting">Настройки</string>
 </resources>

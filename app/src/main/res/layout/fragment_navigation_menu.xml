@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/backPhone"
     tools:context=".Navigation_menu">
 
     <Button
@@ -33,7 +34,7 @@
            app:layout_constraintRight_toRightOf="parent"
            app:layout_constraintTop_toTopOf="parent"
            app:layout_constraintBottom_toBottomOf="parent"
-           android:background="@color/backPhone"
+           android:background="@color/colorGreen"
            app:itemTextColor="@color/black"
            app:itemIconTint="@color/purple_700"
            app:itemIconSize="30sp"

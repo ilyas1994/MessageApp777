@@ -3,24 +3,33 @@
     <item
         android:id="@+id/nav_chat"
         android:icon="@drawable/ic_baseline_chats"
-        android:title="Чат"
+        android:title="@string/chat"
+
         />
     <item
         android:id="@+id/nav_myApp"
         android:icon="@drawable/ic_baseline_myapp"
-        android:title="Заявки" />
+        android:title="@string/myApp"
+
+        />
     <item
         android:id="@+id/nav_create_app"
         android:icon="@drawable/ic_baseline_create"
-        android:title="Создать" />
+        android:title="@string/Create"
+
+        />
 
     <item
         android:id="@+id/nav_favorite"
         android:icon="@drawable/ic_baseline_favorite"
-        android:title="Избранное" />
+        android:title="@string/favorite"
+
+
+        />
     <item
         android:id="@+id/nav_setting"
         android:icon="@drawable/ic_setting"
-        android:title="Настройки" />
+        android:title="@string/setting"
+        />
 
 </menu>
