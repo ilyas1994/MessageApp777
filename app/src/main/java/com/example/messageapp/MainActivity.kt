@@ -50,13 +50,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    fun viewFragment(ft: Fragment) {
-//
-//        supportFragmentManager.beginTransaction().apply {
-//            replace(R.id.fragmentInstruction, ft)
-//            commit()
-//        }
-//    }
+        fun udalitproba(){
+
+        }
 
 
     fun sharedSave(boolean: Boolean) {
