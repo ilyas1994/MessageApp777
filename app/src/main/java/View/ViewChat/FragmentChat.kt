@@ -23,7 +23,8 @@ class FragmentChat : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_chat, container, false)
     }
-
+//qwe
+    // start
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         IncommingMessage = view.findViewById(R.id.IncommingMessage)
