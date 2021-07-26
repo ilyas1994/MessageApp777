@@ -13,11 +13,19 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarItemView
 
 
 class Navigation_menu : Fragment() {
 
     lateinit var myAct: MainActivity
+    lateinit var nav_chat: BottomNavigationItemView
+    lateinit var nav_myApp: BottomNavigationItemView
+    lateinit var nav_create_app: BottomNavigationItemView
+    lateinit var nav_favorite: BottomNavigationItemView
+    lateinit var nav_setting: BottomNavigationItemView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,43 +42,51 @@ class Navigation_menu : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        replaceFragment(ViewMyNoniceForSupplier())
+        findview()
+
+
+        nav_chat.setOnClickListener {
+            replaceFragment(FragmentChat())
+        }
+        nav_myApp.setOnClickListener {
+            replaceFragment(ViewMyNoniceForSupplier())
+        }
+        nav_create_app.setOnClickListener {
+            replaceFragment(FragmentCreateNewApp())
+        }
+        nav_favorite.setOnClickListener {
+
+
+        }
+        nav_setting.setOnClickListener {
+            replaceFragment(FragmentCustomer())
+        }
+
         myAct = (activity as MainActivity)
-        val routerSwitchFragment = Router()
         val resetbutton: Button = view.findViewById(R.id.resetbutton)
         resetbutton.setOnClickListener {
             myAct.sharedPreferences.edit().clear().apply()
             Toast.makeText(context, "Clear", Toast.LENGTH_SHORT).show()
         }
 
-        var nav_chat: BottomNavigationItemView = view.findViewById(R.id.nav_chat)
-        var nav_myApp: BottomNavigationItemView = view.findViewById(R.id.nav_myApp)
-        var nav_create_app: BottomNavigationItemView = view.findViewById(R.id.nav_create_app)
-        var nav_favorite: BottomNavigationItemView = view.findViewById(R.id.nav_favorite)
-        var nav_setting: BottomNavigationItemView = view.findViewById(R.id.nav_setting)
 
 
-        nav_chat.setOnClickListener {
-            myAct.switchFragment(FragmentChat())
-        }
-
-        nav_myApp.setOnClickListener {
-            myAct.switchFragment(ViewMyNoniceForSupplier())
-
-        }
-        nav_create_app.setOnClickListener {
-            myAct.switchFragment(FragmentCreateNewApp())
-
-        }
-        nav_favorite.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction().apply {
-                replace(R.id.emptyFragment, routerSwitchFragment.nextFragment(FragmentCreateNewAppDescription()))
-                commit()
-            }
-        }
-        nav_setting.setOnClickListener {
-            myAct.switchFragment(FragmentCustomer())
+    }
+    private fun replaceFragment(ft: Fragment){
+        requireActivity().supportFragmentManager.beginTransaction().apply {
+            replace(R.id.emptyFragment, ft, null)
+            addToBackStack(null)
+            commit()
         }
     }
 
-
+    private fun findview(){
+        nav_chat = view?.findViewById(R.id.nav_chat)!!
+        nav_myApp = view?.findViewById(R.id.nav_myApp)!!
+        nav_create_app = view?.findViewById(R.id.nav_create_app)!!
+        nav_favorite = view?.findViewById(R.id.nav_favorite)!!
+        nav_setting = view?.findViewById(R.id.nav_setting)!!
+    }
 }

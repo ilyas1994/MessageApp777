@@ -3,7 +3,6 @@ package View.ViewChat.ViewCreateNewApp
 import View.ViewChat.FragmentChat
 import View.ViewChat.ViewCustomer.FragmentCustomer
 import View.ViewChat.ViewMyNoticeForSupplier.ViewMyNoniceForSupplier
-import ViewDescriptionApplication.FragmentDescriptionApplication
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -48,36 +47,8 @@ class FragmentCreateNewApp : Fragment() {
                 }
         }
         buttonSave.setOnClickListener {
-            if (radio1.isChecked || radio2.isChecked)
-                mainAct.switchFragment(FragmentDescriptionApplication())
-        }
-
-        var myAct = (activity as MainActivity)
-        var nav_chat: BottomNavigationItemView = view.findViewById(R.id.nav_chat)
-        var nav_myApp: BottomNavigationItemView = view.findViewById(R.id.nav_myApp)
-        var nav_create_app: BottomNavigationItemView = view.findViewById(R.id.nav_create_app)
-        var nav_favorite: BottomNavigationItemView = view.findViewById(R.id.nav_favorite)
-        var nav_setting: BottomNavigationItemView = view.findViewById(R.id.nav_setting)
-
-
-        nav_chat.setOnClickListener {
-            myAct.switchFragment(FragmentChat())
-        }
-
-        nav_myApp.setOnClickListener {
-            myAct.switchFragment(ViewMyNoniceForSupplier())
 
         }
-        nav_create_app.setOnClickListener {
-            myAct.switchFragment(FragmentCreateNewApp())
 
-        }
-        nav_favorite.setOnClickListener {
-
-        }
-        nav_setting.setOnClickListener {
-            myAct.switchFragment(FragmentCustomer())
-
-        }
     }
 }

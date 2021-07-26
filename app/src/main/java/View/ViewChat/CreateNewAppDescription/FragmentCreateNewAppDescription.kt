@@ -58,7 +58,6 @@ class FragmentCreateNewAppDescription : Fragment() {
 
         linearCreate.addView(editTextCreate)
         mainLinear.addView(linearCreate)
-//        mainLinear.addView(imageviewNewLinear)
 
     }
 }
