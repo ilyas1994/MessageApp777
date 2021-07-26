@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 
 val SUCCESFULL_REGISTER_SAVE = "succesfulregister"
-
+//opopqweqweqe
 class MainActivity : AppCompatActivity() {
 
     var fragmentz = 0
