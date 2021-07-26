@@ -25,6 +25,7 @@ class FragmentChat : Fragment() {
     }
 //qwe
     // start
+    //start22
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         IncommingMessage = view.findViewById(R.id.IncommingMessage)
