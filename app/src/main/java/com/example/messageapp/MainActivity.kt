@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
     }
 
         fun udalitproba(){
-
+            var qwe = "eee"
         }
 
 
