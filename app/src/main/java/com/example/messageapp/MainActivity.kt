@@ -73,10 +73,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun rabb(){
-           // qwefgdg
-    }
-    // qweqweqwwqeqe
+
 }
 
 
