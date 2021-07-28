@@ -13,13 +13,12 @@ val SUCCESFULL_REGISTER_SAVE = "succesfulregister"
 //opopqweqweqe
 class MainActivity : AppCompatActivity() {
 
-    val bbb = "MyClass Ilyas"
-    val ccc = "My Class Ilyas 2nnnn"
     var fragmentz = 0
 
     val sharedPreferences: SharedPreferences by lazy {
         getSharedPreferences("hello", Context.MODE_PRIVATE)
     }
+//qweqww
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -75,7 +74,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun rabb(){
-           // qwefgdgsdf
+           // qwefgdg
     }
     // qweqweqwwqeqe
 }
