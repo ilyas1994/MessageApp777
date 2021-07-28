@@ -73,7 +73,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
+fun del (){
+    //sdfsdfsdf
+}
 
 }
 
