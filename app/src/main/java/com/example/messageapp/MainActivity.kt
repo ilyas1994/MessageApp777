@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     val sharedPreferences: SharedPreferences by lazy {
         getSharedPreferences("hello", Context.MODE_PRIVATE)
     }
-
+//qweqww
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
