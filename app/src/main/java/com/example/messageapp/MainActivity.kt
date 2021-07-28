@@ -73,9 +73,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-fun del (){
-    //sdfsdfsdf
-}
+
+     fun comit1(){
+         //dsfdsf
+     }
+
+    fun comin2(){
+        //sdfdsf
+    }
 
 }
 
