@@ -72,11 +72,11 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-    //ttt
 
-    fun asd(i:Int){
-   // sdfsdfsdfrtertertwerwerwer
-    }
+fun del (){
+    //sdfsdfsdf
+}
+
 }
 
 
