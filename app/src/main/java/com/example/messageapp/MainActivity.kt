@@ -78,6 +78,10 @@ class MainActivity : AppCompatActivity() {
          //dsfdsf
      }
 
+    fun comin2(){
+        //sdfdsf
+    }
+
 }
 
 
