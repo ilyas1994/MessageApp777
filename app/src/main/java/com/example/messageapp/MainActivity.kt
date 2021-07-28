@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
     //ttt
 
     fun asd(i:Int){
-
+   // sdfsdfsdf
     }
 }
 
