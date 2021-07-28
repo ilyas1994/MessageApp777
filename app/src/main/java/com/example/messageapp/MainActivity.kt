@@ -12,13 +12,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationItemView
 val SUCCESFULL_REGISTER_SAVE = "succesfulregister"
 //opopqweqweqe
 class MainActivity : AppCompatActivity() {
-
+// rabbaaaa
+    val bbb = "MyClass Ilyas"
+    val ccc = "My Class Ilyas 2nnnn"
     var fragmentz = 0
 
     val sharedPreferences: SharedPreferences by lazy {
         getSharedPreferences("hello", Context.MODE_PRIVATE)
     }
-//qweqww
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
