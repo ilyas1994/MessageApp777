@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun rabb(){
-           // qwe
+           // qwefgdg
     }
     // qweqweqwwqeqe
 }
