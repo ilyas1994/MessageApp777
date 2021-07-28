@@ -14,7 +14,7 @@ val SUCCESFULL_REGISTER_SAVE = "succesfulregister"
 class MainActivity : AppCompatActivity() {
 
     val bbb = "MyClass Ilyas"
-
+    val ccc = "My Class Ilyas 2"
     var fragmentz = 0
 
     val sharedPreferences: SharedPreferences by lazy {
