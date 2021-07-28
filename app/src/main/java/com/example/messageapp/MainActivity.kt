@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
+//dfgfdg
         switchFragment(FragmentChoiseUser())
 //        viewFragment(EmptyFragment())
 
@@ -71,6 +71,10 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    fun rabb(){
+
     }
     // qweqweqwwqeqe
 }
