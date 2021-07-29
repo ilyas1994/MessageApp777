@@ -31,6 +31,7 @@ class FragmentChat : Fragment() {
         IncommingMessage = view.findViewById(R.id.IncommingMessage)
         textViewOutGoingMessage = view.findViewById(R.id.textViewOutGoingMessage)
          editTextMessage = view.findViewById(R.id.editTextMessage)
+
         var buttonSendMessage: ImageView = view.findViewById(R.id.buttonSendMessage)
          ln = view.findViewById(R.id.ln)
         var flag = false;

@@ -2,6 +2,8 @@ package com.example.messageapp
 
 import View.ViewChat.CreateNewAppDescription.FragmentCreateNewAppDescription
 import View.ViewChat.FragmentChat
+import View.ViewChat.ViewChat.ChatRecyclerView
+import View.ViewChat.ViewChat.FragmentChatRV
 import View.ViewChat.ViewCreateNewApp.FragmentCreateNewApp
 import View.ViewChat.ViewCustomer.FragmentCustomer
 import View.ViewChat.ViewMyNoticeForSupplier.ViewMyNoniceForSupplier
@@ -43,7 +45,7 @@ class Navigation_menu : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        replaceFragment(ViewMyNoniceForSupplier())
+//        replaceFragment(ViewMyNoniceForSupplier())
         findview()
 
 
@@ -57,7 +59,7 @@ class Navigation_menu : Fragment() {
             replaceFragment(FragmentCreateNewApp())
         }
         nav_favorite.setOnClickListener {
-
+            replaceFragment(FragmentChatRV())
 
         }
         nav_setting.setOnClickListener {
