@@ -1,8 +1,5 @@
 package View.ViewChat.ViewCustomer
 
-import View.ViewChat.FragmentChat
-import View.ViewChat.ViewCreateNewApp.FragmentCreateNewApp
-import View.ViewChat.ViewMyNoticeForSupplier.ViewMyNoniceForSupplier
 import View.ViewChat.ViewSuccesfullRegistration.FragmentSuccesfullRegistration
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,9 +11,7 @@ import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
 import com.example.messageapp.MainActivity
-import com.example.messageapp.Navigation_menu
 import com.example.messageapp.R
-import com.google.android.material.bottomnavigation.BottomNavigationItemView
 
 
 class FragmentCustomer : Fragment() {

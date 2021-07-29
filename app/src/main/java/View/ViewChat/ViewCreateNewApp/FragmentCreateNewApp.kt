@@ -1,8 +1,5 @@
 package View.ViewChat.ViewCreateNewApp
 
-import View.ViewChat.FragmentChat
-import View.ViewChat.ViewCustomer.FragmentCustomer
-import View.ViewChat.ViewMyNoticeForSupplier.ViewMyNoniceForSupplier
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.*
 import com.example.messageapp.MainActivity
 import com.example.messageapp.R
-import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import companion.ExchangeName
 
 

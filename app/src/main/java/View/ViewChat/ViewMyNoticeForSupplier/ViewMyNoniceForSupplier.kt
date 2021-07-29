@@ -1,9 +1,6 @@
 package View.ViewChat.ViewMyNoticeForSupplier
 
-import View.ViewChat.FragmentChat
 import View.ViewChat.ViewChoiseUser.FragmentChoiseUser
-import View.ViewChat.ViewCreateNewApp.FragmentCreateNewApp
-import View.ViewChat.ViewCustomer.FragmentCustomer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.example.messageapp.MainActivity
 import com.example.messageapp.R
-import com.google.android.material.bottomnavigation.BottomNavigationItemView
 
 
 class ViewMyNoniceForSupplier : Fragment() {

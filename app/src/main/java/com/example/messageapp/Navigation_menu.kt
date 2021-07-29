@@ -1,12 +1,11 @@
 package com.example.messageapp
 
 import View.ViewChat.CreateNewAppDescription.FragmentCreateNewAppDescription
-import View.ViewChat.FragmentChat
-import View.ViewChat.ViewChat.ChatRecyclerView
 import View.ViewChat.ViewChat.FragmentChatRV
 import View.ViewChat.ViewCreateNewApp.FragmentCreateNewApp
 import View.ViewChat.ViewCustomer.FragmentCustomer
 import View.ViewChat.ViewMyNoticeForSupplier.ViewMyNoniceForSupplier
+import View.ViewChat.ViewNewApplications.ViewFragmentNewApplications
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,9 +14,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationBarItemView
 
 
 class Navigation_menu : Fragment() {
@@ -53,7 +49,7 @@ class Navigation_menu : Fragment() {
             replaceFragment(FragmentChatRV())
         }
         nav_myApp.setOnClickListener {
-            replaceFragment(ViewMyNoniceForSupplier())
+            replaceFragment(ViewFragmentNewApplications())
         }
         nav_create_app.setOnClickListener {
             replaceFragment(FragmentCreateNewApp())
