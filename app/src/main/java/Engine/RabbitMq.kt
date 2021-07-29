@@ -1,0 +1,4 @@
+package Engine
+
+class RabbitMq {
+}
