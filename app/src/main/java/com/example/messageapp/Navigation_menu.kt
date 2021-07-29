@@ -50,7 +50,7 @@ class Navigation_menu : Fragment() {
 
 
         nav_chat.setOnClickListener {
-            replaceFragment(FragmentChat())
+            replaceFragment(FragmentChatRV())
         }
         nav_myApp.setOnClickListener {
             replaceFragment(ViewMyNoniceForSupplier())
@@ -59,7 +59,6 @@ class Navigation_menu : Fragment() {
             replaceFragment(FragmentCreateNewApp())
         }
         nav_favorite.setOnClickListener {
-            replaceFragment(FragmentChatRV())
 
         }
         nav_setting.setOnClickListener {
