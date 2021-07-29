@@ -1,8 +1,12 @@
 package Engine.RabbitMq
+import View.ViewChat.ViewChat.ChatRecyclerView
 import android.content.Context
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.rabbitmq.client.*
 import java.nio.charset.StandardCharsets
+import kotlin.concurrent.thread
 
 
 class RabbitMq(exchange_name:String, context:Context) {
@@ -12,6 +16,9 @@ class RabbitMq(exchange_name:String, context:Context) {
             lateinit var connection:Connection
             lateinit var channel: Channel
              var dataArr = mutableListOf<String>()
+            var sendMes = ""
+            lateinit var adapter: ChatRecyclerView
+
         }
         private lateinit var factory:ConnectionFactory
 
@@ -25,12 +32,14 @@ class RabbitMq(exchange_name:String, context:Context) {
         }
 
         fun createConnection(){
-            try {
-                connection = factory.newConnection()
-                createChanel()
-            }catch (e:Exception){
-                Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
-            }
+            Thread{
+                try {
+                    connection = factory.newConnection()
+                    createChanel()
+                } catch (e: Exception) {
+                    Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
+                }
+            }.start()
 
         }
 
@@ -44,27 +53,31 @@ class RabbitMq(exchange_name:String, context:Context) {
                 channel.exchangeDeclare(EXCHANGE_NAME, "topic");
                 val queueName = channel.queueDeclare().queue
                 channel.queueBind(queueName, EXCHANGE_NAME, "");
+                Listner()
             }catch (e:Exception){
                 Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
             }
         }
 
         private fun Listner(){
-            val deliverCallback = DeliverCallback { consumerTag: String?, delivery: Delivery ->
-                var message = String(delivery.body, StandardCharsets.UTF_8)
-                if(message != ""){dataArr.add(message); message = ""}
-                channel.basicAck(delivery.getEnvelope().deliveryTag, true)
+            while (true) {
+                val deliverCallback = DeliverCallback { consumerTag: String?, delivery: Delivery ->
+                    var message = String(delivery.body, StandardCharsets.UTF_8)
+                    if (message != "") {
+                        adapter.addDataClass(message)
+                        message = ""
+                    }
+                    channel.basicAck(delivery.getEnvelope().deliveryTag, true)
+                }
+                channel.basicConsume("queueName", true, deliverCallback, { consumerTag -> })
+
+               if(sendMes != ""){
+                   SendMessage(sendMes)
+                   sendMes = ""
+               }
             }
-            channel.basicConsume("queueName", true, deliverCallback, { consumerTag -> })
         }
 
-        private fun DataTreatment(mes:String){
-             while (true){
-                 if(dataArr.count() > 0){
-
-                 }
-             }
-        }
 
         fun SendMessage(data:String){
             try {

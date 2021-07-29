@@ -1,5 +1,7 @@
 package View.ViewChat.ViewChat
 
+import Engine.RabbitMq.RabbitMq
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -35,11 +37,17 @@ class FragmentChatRV : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        var rabbit = context?.let { RabbitMq("test", it) }
+        if (rabbit != null) {
+            rabbit.createConnection()
+            RabbitMq.adapter = adapter
+        }
         recycler = view.findViewById(R.id.recyclerView)
         buttonSendMessage = view.findViewById(R.id.ivButtonSend)
         ediTextChat = view.findViewById(R.id.ediTextChat)
         recycler.layoutManager = LinearLayoutManager(context)
         recycler.adapter = adapter
+
          var flag = false;
        
 
@@ -48,15 +56,19 @@ class FragmentChatRV : Fragment() {
             if (ediTextChat.text.isNotEmpty()) {
                 ediTextChat.background = resources.getDrawable(R.drawable.edittextadddescription)
 
-                if (flag) {
+//                if (flag) {
+                    adapter.flag = false
                     adapter.addDataClass(ediTextChat.text.toString())
                     ediTextChat.text.clear()
-                    flag = false
-                } else {
-                    adapter.addDataClass(ediTextChat.text.toString())
-                    ediTextChat.text.clear()
-                    flag = true
-                }
+                    RabbitMq.sendMes = ediTextChat.text.toString()
+
+//                    flag = false
+//                }
+//                else {
+//                    adapter.addDataClass(ediTextChat.text.toString())
+//                    ediTextChat.text.clear()
+//                    flag = true
+//                }
 
             } else {
                 ediTextChat.background = resources.getDrawable(R.drawable.edittextchatisnull)
