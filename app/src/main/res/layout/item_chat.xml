@@ -18,7 +18,8 @@
             android:id="@+id/textviewIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="First 1"
+            android:background="@drawable/messagedesign"
+            android:text="First"
             android:textSize="20sp"
             />
     </LinearLayout>

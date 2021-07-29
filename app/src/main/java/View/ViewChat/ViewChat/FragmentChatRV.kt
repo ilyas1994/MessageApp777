@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.messageapp.R
@@ -13,7 +16,8 @@ import com.example.messageapp.R
 
 class FragmentChatRV : Fragment() {
 
-    lateinit var button: Button
+    lateinit var buttonSendMessage: ImageView
+    lateinit var ediTextChat: EditText
     private var adapter = ChatRecyclerView()
     lateinit var recycler: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,20 +36,32 @@ class FragmentChatRV : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recycler = view.findViewById(R.id.recyclerView)
-        button = view.findViewById(R.id.button)
+        buttonSendMessage = view.findViewById(R.id.ivButtonSend)
+        ediTextChat = view.findViewById(R.id.ediTextChat)
         recycler.layoutManager = LinearLayoutManager(context)
         recycler.adapter = adapter
          var flag = false;
-        button.setOnClickListener {
-            if(flag) {
-                adapter.addDataClass("Frist")
-                flag = false
-            }
-            else {
-                adapter.addDataClass("Second")
-                flag = true
-            }
+       
 
+
+        buttonSendMessage.setOnClickListener {
+            if (ediTextChat.text.isNotEmpty()) {
+                ediTextChat.background = resources.getDrawable(R.drawable.edittextadddescription)
+
+                if (flag) {
+                    adapter.addDataClass(ediTextChat.text.toString())
+                    ediTextChat.text.clear()
+                    flag = false
+                } else {
+                    adapter.addDataClass(ediTextChat.text.toString())
+                    ediTextChat.text.clear()
+                    flag = true
+                }
+
+            } else {
+                ediTextChat.background = resources.getDrawable(R.drawable.edittextchatisnull)
+                Toast.makeText(context, "Введите текст", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
