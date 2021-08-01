@@ -9,15 +9,17 @@ import java.nio.charset.StandardCharsets
 import kotlin.concurrent.thread
 
 
-class RabbitMq(exchange_name:String, context:Context) {
-        private lateinit var context:Context
+class RabbitMq {
+
         companion object {
-             lateinit var EXCHANGE_NAME:String;
+            lateinit var EXCHANGE_NAME:String;
             lateinit var connection:Connection
-            lateinit var channel: Channel
+            lateinit var Channel: Channel
              var dataArr = mutableListOf<String>()
             var sendMes = ""
             lateinit var adapter: ChatRecyclerView
+
+            var queueName:String = ""
 
         }
         private lateinit var factory:ConnectionFactory
@@ -27,71 +29,63 @@ class RabbitMq(exchange_name:String, context:Context) {
             factory.host = "192.168.0.108"
             factory.username ="admin"
             factory.password = "admin"
-            EXCHANGE_NAME = exchange_name
-            this.context = context
+            SendRabbitMQ.EXCHANGE_NAME = "ex"
+            createConnection()
         }
 
         fun createConnection(){
             Thread{
                 try {
                     connection = factory.newConnection()
-                    createChanel()
+                    createChannel()
+
                 } catch (e: Exception) {
-                    Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
                 }
             }.start()
 
         }
 
 
-        private fun createChanel() {
+
+
+
+        private fun createChannel() {
             try {
-                if (channel.isOpen) {
-                    channel.close()
-                }
-                channel = connection.createChannel()
-                channel.exchangeDeclare(EXCHANGE_NAME, "topic");
-                val queueName = channel.queueDeclare().queue
-                channel.queueBind(queueName, EXCHANGE_NAME, "");
+
+                Channel = connection.createChannel()
+                queueName = Channel.queueDeclare().queue
+                Channel.exchangeDeclare(EXCHANGE_NAME, "direct");
+                Channel.queueBind(queueName, EXCHANGE_NAME, "xiaomi");
+                Channel.queueBind(queueName, EXCHANGE_NAME, "oppo");
                 Listner()
             }catch (e:Exception){
-                Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
+                //                Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
             }
         }
 
         private fun Listner(){
-            while (true) {
-                val deliverCallback = DeliverCallback { consumerTag: String?, delivery: Delivery ->
+
+                val deliverCallback = DeliverCallback { ConsumerTag: String?, delivery: Delivery ->
                     var message = String(delivery.body, StandardCharsets.UTF_8)
+                    var s = delivery.getEnvelope().routingKey
+
                     if (message != "") {
-                        adapter.addDataClass(message)
+
+                        adapter.addDataClass(message+": s")
                         message = ""
                     }
-                    channel.basicAck(delivery.getEnvelope().deliveryTag, true)
+
+                    Channel.basicAck(delivery.getEnvelope().deliveryTag, true)
                 }
-                channel.basicConsume("queueName", true, deliverCallback, { consumerTag -> })
 
-               if(sendMes != ""){
-                   SendMessage(sendMes)
-                   sendMes = ""
-               }
-            }
+                Channel.basicConsume(queueName, false, deliverCallback, { consumerTag -> })
+
+
         }
 
 
-        fun SendMessage(data:String){
-            try {
-                channel.basicPublish(
-                    EXCHANGE_NAME,
-                    "",
-                    null,
-                    data.toByteArray(StandardCharsets.UTF_8)
-                )
 
-            }catch (e:Exception){
-                Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
-            }
-        }
 
 
 

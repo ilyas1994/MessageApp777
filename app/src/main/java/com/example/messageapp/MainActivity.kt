@@ -13,13 +13,13 @@ val SUCCESFULL_REGISTER_SAVE = "succesfulregister"
 class MainActivity : AppCompatActivity() {
 
     var fragmentz = 0
-
     val sharedPreferences: SharedPreferences by lazy {
         getSharedPreferences("hello", Context.MODE_PRIVATE)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
 
         switchFragment(FragmentChoiseUser())

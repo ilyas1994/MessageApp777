@@ -1,6 +1,7 @@
 package View.ViewChat.ViewChat
 
 import Engine.RabbitMq.RabbitMq
+import Engine.RabbitMq.SendRabbitMQ
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -37,9 +38,11 @@ class FragmentChatRV : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var rabbit = context?.let { RabbitMq("test", it) }
-        if (rabbit != null) {
-            rabbit.createConnection()
+        var rabbit =  RabbitMq()
+        var sendRabbit = SendRabbitMQ()
+
+        if (sendRabbit != null) {
+            SendRabbitMQ.adapter = adapter
             RabbitMq.adapter = adapter
         }
         recycler = view.findViewById(R.id.recyclerView)
@@ -59,9 +62,9 @@ class FragmentChatRV : Fragment() {
 //                if (flag) {
                     adapter.flag = false
                     adapter.addDataClass(ediTextChat.text.toString())
-                    ediTextChat.text.clear()
-                    RabbitMq.sendMes = ediTextChat.text.toString()
 
+                    SendRabbitMQ.sendMes = ediTextChat.text.toString()
+                    ediTextChat.text.clear()
 //                    flag = false
 //                }
 //                else {
