@@ -33,7 +33,7 @@ class SendRabbitMQ {
     fun createConnection(){
         Thread{
             try {
-                RabbitMq.connection = factory.newConnection()
+                connection = factory.newConnection()
                 createChannel()
 
             } catch (e: Exception) {
@@ -48,9 +48,10 @@ class SendRabbitMQ {
 
             Channel = connection.createChannel()
             queueName = Channel.queueDeclare().queue
-            Channel.exchangeDeclare(RabbitMq.EXCHANGE_NAME, "direct");
-            Channel.queueBind(queueName, EXCHANGE_NAME, "xiaomi");
-            Channel.queueBind(queueName, EXCHANGE_NAME, "oppo");
+            Channel.exchangeDeclare(EXCHANGE_NAME, "direct");
+
+            Channel.queueBind(queueName, EXCHANGE_NAME, "X1");
+
             Listner()
         }catch (e:Exception){
             //                Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
@@ -69,8 +70,8 @@ class SendRabbitMQ {
     fun SendMessage(data:String){
         try {
             Channel.basicPublish(
-                RabbitMq.EXCHANGE_NAME,
-                "oppo",
+                EXCHANGE_NAME,
+                "X2",
                 null,
                 data.toByteArray(StandardCharsets.UTF_8)
             )

@@ -29,7 +29,7 @@ class RabbitMq {
             factory.host = "192.168.0.108"
             factory.username ="admin"
             factory.password = "admin"
-            SendRabbitMQ.EXCHANGE_NAME = "ex"
+            EXCHANGE_NAME = "ex"
             createConnection()
         }
 
@@ -56,8 +56,8 @@ class RabbitMq {
                 Channel = connection.createChannel()
                 queueName = Channel.queueDeclare().queue
                 Channel.exchangeDeclare(EXCHANGE_NAME, "direct");
-                Channel.queueBind(queueName, EXCHANGE_NAME, "xiaomi");
-                Channel.queueBind(queueName, EXCHANGE_NAME, "oppo");
+
+                Channel.queueBind(queueName, EXCHANGE_NAME, "X2");
                 Listner()
             }catch (e:Exception){
                 //                Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
@@ -72,7 +72,7 @@ class RabbitMq {
 
                     if (message != "") {
 
-                        adapter.addDataClass(message+": s")
+                        adapter.addDataClass(message+": ${s}")
                         message = ""
                     }
 

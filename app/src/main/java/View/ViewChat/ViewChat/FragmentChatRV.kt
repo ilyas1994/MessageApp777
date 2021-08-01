@@ -39,9 +39,9 @@ class FragmentChatRV : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var rabbit =  RabbitMq()
-        var sendRabbit = SendRabbitMQ()
+//        var sendRabbit = SendRabbitMQ()
 
-        if (sendRabbit != null) {
+        if (rabbit != null) {
             SendRabbitMQ.adapter = adapter
             RabbitMq.adapter = adapter
         }
