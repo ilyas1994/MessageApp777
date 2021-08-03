@@ -1,7 +1,10 @@
 package View.ViewChat.ViewChat
 
+import Engine.RabbitMq.Arr
 import Engine.RabbitMq.RabbitMq
 import Engine.RabbitMq.SendRabbitMQ
+import android.bluetooth.BluetoothClass
+
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,14 +18,23 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.messageapp.R
-
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import java.util.concurrent.*
+import java.util.concurrent.locks.Lock
+import java.util.concurrent.locks.LockSupport
+import kotlin.properties.Delegates
 
 class FragmentChatRV : Fragment() {
 
     lateinit var buttonSendMessage: ImageView
-    lateinit var ediTextChat: EditText
+    lateinit var TextChat: EditText
     private var adapter = ChatRecyclerView()
     lateinit var recycler: RecyclerView
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -38,33 +50,50 @@ class FragmentChatRV : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        buttonSendMessage = view.findViewById(R.id.ivButtonSend)
+        TextChat = view.findViewById(R.id.ediTextChat)
         var rabbit =  RabbitMq()
 //        var sendRabbit = SendRabbitMQ()
 
-        if (rabbit != null) {
-            SendRabbitMQ.adapter = adapter
-            RabbitMq.adapter = adapter
-        }
+//        if (rabbit != null) {
+
+//        }
+//        recycler = view.findViewById(R.id.recyclerView)
         recycler = view.findViewById(R.id.recyclerView)
-        buttonSendMessage = view.findViewById(R.id.ivButtonSend)
-        ediTextChat = view.findViewById(R.id.ediTextChat)
+
+
         recycler.layoutManager = LinearLayoutManager(context)
+
         recycler.adapter = adapter
 
+
+        rabbit.adapter = adapter
+
+//        SendRabbitMQ.adapter = adapter
+
+
+
          var flag = false;
-       
 
 
-        buttonSendMessage.setOnClickListener {
-            if (ediTextChat.text.isNotEmpty()) {
-                ediTextChat.background = resources.getDrawable(R.drawable.edittextadddescription)
+//for (i in 0..5)
+//    adapter.updateList("ediTextChat.text.toString()",adapter)
+
+            buttonSendMessage.setOnClickListener {
+                if (TextChat.text.isNotEmpty()) {
+                    TextChat.background =
+                        resources.getDrawable(R.drawable.edittextadddescription)
 
 //                if (flag) {
-                    adapter.flag = false
-                    adapter.addDataClass(ediTextChat.text.toString())
 
-                    SendRabbitMQ.sendMes = ediTextChat.text.toString()
-                    ediTextChat.text.clear()
+
+
+//                    adapter.flag = false
+//                adapter.addDataClass(ediTextChat.text.toString())
+                    adapter.updateList(TextChat.text.toString())
+//
+//                    SendRabbitMQ.sendMes = TextChat.text.toString()
+                     TextChat.text.clear()
 //                    flag = false
 //                }
 //                else {
@@ -73,10 +102,17 @@ class FragmentChatRV : Fragment() {
 //                    flag = true
 //                }
 
-            } else {
-                ediTextChat.background = resources.getDrawable(R.drawable.edittextchatisnull)
-                Toast.makeText(context, "Введите текст", Toast.LENGTH_SHORT).show()
+                } else {
+
+                    TextChat.background = resources.getDrawable(R.drawable.edittextchatisnull)
+                    Toast.makeText(context, "Введите текст", Toast.LENGTH_SHORT).show()
+                }
             }
+
         }
+
+    val test= { mes:String ->
+
     }
+
 }

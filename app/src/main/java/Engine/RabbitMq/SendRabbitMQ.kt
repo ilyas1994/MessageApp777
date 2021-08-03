@@ -71,7 +71,7 @@ class SendRabbitMQ {
         try {
             Channel.basicPublish(
                 EXCHANGE_NAME,
-                "X2",
+                "X1",
                 null,
                 data.toByteArray(StandardCharsets.UTF_8)
             )
