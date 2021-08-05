@@ -22,22 +22,31 @@ class ChatRecyclerView: RecyclerView.Adapter<ChatRecyclerView.ChatHolder>() {
     var addlistParams = ArrayList<LinearLayout.LayoutParams>()
      var flag = false
 
-    class ChatHolder(item: View): RecyclerView.ViewHolder(item) {
+                class ChatHolder(item: View,  var CV:ChatRecyclerView): RecyclerView.ViewHolder(item) {
 
 
-   var it = item
-//        fun bind(dataClassChat: String, t:LinearLayout.LayoutParams){
-        fun bind(dataClassChat: String){
-            var textview1 = it.findViewById<TextView>(R.id.textviewIn)
-//            textview1.layoutParams = t
-//            if(t.gravity == Gravity.LEFT)
-//                textview1.setPadding(10,0,0,0)
-//            else if(t.gravity == Gravity.RIGHT)
-//                textview1.setPadding(0,0,10,0)
+                    var it = item
 
-            textview1.text = dataClassChat
-        }
-    }
+                    //        fun bind(dataClassChat: String, t:LinearLayout.LayoutParams){
+                    fun bind(dataClassChat: String) {
+                             var textview1 = it.findViewById<TextView>(R.id.textviewIn)
+
+                                //            textview1.layoutParams = t
+        //                                if(t.gravity == Gravity.LEFT)
+
+                                if (CV.flag) {
+                                    textview1.gravity = Gravity.LEFT
+                                    textview1.setPadding(10, 0, 0, 0)
+                                } else if (!CV.flag) {
+                                    //                                    if(t.gravity == Gravity.RIGHT)
+                                    textview1.gravity = Gravity.RIGHT
+                                    textview1.setPadding(0, 0, 10, 0)
+                                }
+                        println(CV.flag);
+                                    textview1.text = dataClassChat
+                    }
+                }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_chat, parent, false)
@@ -57,7 +66,7 @@ class ChatRecyclerView: RecyclerView.Adapter<ChatRecyclerView.ChatHolder>() {
 //        }
 //
 //        addlistParams.add(params)
-        return ChatHolder(view)
+        return ChatHolder(view,this)
     }
 
     override fun onBindViewHolder(holder: ChatHolder, position: Int) {
@@ -118,7 +127,7 @@ class ChatRecyclerView: RecyclerView.Adapter<ChatRecyclerView.ChatHolder>() {
 
 
     fun updateList( s:String) {
-        flag = false
+
          NewAddlist.add(s)
 
         var diffResult = DiffUtil.calculateDiff(MyDiffCallBack(NewAddlist as ArrayList<String>, this.addlist as ArrayList<String>),false)

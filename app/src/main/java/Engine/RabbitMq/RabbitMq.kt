@@ -19,6 +19,7 @@ class RabbitMq(RecyclerViewAdapter:ChatRecyclerView) {
 
         private lateinit var queueName:String
         private  var EXCHANGE_NAME:String = "ex"
+        private  var EXCHANGE_NAME_RECIVE:String = "ex"
         private lateinit var connection:Connection
         private lateinit var Channel: Channel
         private var factory:ConnectionFactory
@@ -35,15 +36,11 @@ class RabbitMq(RecyclerViewAdapter:ChatRecyclerView) {
 
         fun createConnection() {
             try {
-
                   connection = factory.newConnection()
                   createChannel()
-
-
-
-            } catch (e: Exception) {
-//                    Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
-            }
+                } catch (e: Exception) {
+    //                    Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
+                }
         }
 
 
@@ -56,7 +53,10 @@ class RabbitMq(RecyclerViewAdapter:ChatRecyclerView) {
             try {
 
                 Channel = connection.createChannel()
-                queueName = Channel.queueDeclare().queue
+//                queueName = "Pixel2"
+
+//                queueName = Channel.queueDeclare("Xiaomi",false,false,false,null).queue
+                queueName = Channel.queueDeclare("Pixel",false,false,false,null).queue
                 Channel.exchangeDeclare(EXCHANGE_NAME, "direct");
 
                 Channel.queueBind(queueName, EXCHANGE_NAME, "X2");
@@ -76,6 +76,7 @@ class RabbitMq(RecyclerViewAdapter:ChatRecyclerView) {
             }
         }
     }
+
     fun SendMessage(data:String){
         try {
             Channel.basicPublish(
@@ -90,6 +91,7 @@ class RabbitMq(RecyclerViewAdapter:ChatRecyclerView) {
     }
 
        private fun  Listner(){
+
 //           while (true) {
                try {
 //                   Sending()
@@ -98,12 +100,14 @@ class RabbitMq(RecyclerViewAdapter:ChatRecyclerView) {
                        DeliverCallback { ConsumerTag: String?, delivery: Delivery ->
                            var message = String(delivery.body, StandardCharsets.UTF_8)
                            var s = delivery.envelope.routingKey
+
                            mHandler.post(Runnable {
 
-                               println(adapter.runCatching {
-                                   println(message)
+                              adapter.runCatching {
+//                                   println(message)
+                                   flag = false
                                    updateList(message)
-                               }.isSuccess)
+                               }
 
                                // your code to update the UI.
                            })

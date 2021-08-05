@@ -8,6 +8,11 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import kotlinx.coroutines.Delay
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.selects.select
 
 val SUCCESFULL_REGISTER_SAVE = "succesfulregister"
 class MainActivity : AppCompatActivity() {
@@ -19,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+       var flag = false
 
 
         switchFragment(FragmentChoiseUser())

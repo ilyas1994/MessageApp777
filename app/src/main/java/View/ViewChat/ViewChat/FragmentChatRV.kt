@@ -26,7 +26,7 @@ import java.util.concurrent.*
 import java.util.concurrent.locks.Lock
 import java.util.concurrent.locks.LockSupport
 import kotlin.properties.Delegates
-
+// http://localhost:15672/api/queues/%2F/Xiaomi/
 class FragmentChatRV : Fragment() {
 
     lateinit var buttonSendMessage: ImageView
@@ -50,6 +50,7 @@ class FragmentChatRV : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
         buttonSendMessage = view.findViewById(R.id.ivButtonSend)
         TextChat = view.findViewById(R.id.ediTextChat)
@@ -74,11 +75,13 @@ class FragmentChatRV : Fragment() {
 //    adapter.updateList("ediTextChat.text.toString()",adapter)
 
             buttonSendMessage.setOnClickListener {
+
+
                 if (TextChat.text.isNotEmpty()) {
                     TextChat.background =
                         resources.getDrawable(R.drawable.edittextadddescription)
 
-
+                    adapter.flag = true
                     ConnectionRabbitMq.sendMes= TextChat.text.toString()
                     adapter.updateList(TextChat.text.toString())
 

@@ -2,7 +2,7 @@ package Engine.RabbitMq
 
 import com.rabbitmq.client.ConnectionFactory
 
-object ConnectionRabbitMq {
+object ConnectionRabbitMq{
     var factory =  ConnectionFactory()
     var  sendMes = ""
     init {
