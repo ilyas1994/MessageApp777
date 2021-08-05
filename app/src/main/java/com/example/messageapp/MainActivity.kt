@@ -10,6 +10,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
+import android.opengl.Visibility
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -124,6 +125,10 @@ class MainActivity : AppCompatActivity() {
                 .setContentTitle("TITLE")
                 .setContentText(str)
                 .setContentIntent(pendingIntent)
+                .setVisibility(Notification.VISIBILITY_PUBLIC)
+                .setCategory(Notification.CATEGORY_MESSAGE)
+//
+
 //                .addAction(R.drawable.ic_alarm,"asd",pendingIntent)
 //                .addAction(R.drawable.ic_launcher_foreground, "SSSS", )
 
@@ -141,8 +146,26 @@ class MainActivity : AppCompatActivity() {
     }
     fun nott(){
         notificationManager.notify(NOTIFICATION_ID_INT, builder.build())
+//        notificationManager.notify(RECEIVER_VISIBLE_TO_INSTANT_APPS, builder.build())
 
     }
+
+//    fun startForeGround(){
+//        var notificationIntent:Intent = Intent(this,   MainActivity
+//        ::class.java)
+//
+//        val pendingIntent =
+//            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+//
+//        startForeGround(Notification.Builder(this, CHANNEL_ID_STRING)
+//            .setSmallIcon(R.drawable.ic_baseline_arrow_back_24)
+//            .setContentTitle("TITLE")
+//            .setContentText(str)
+//            .setContentIntent(pendingIntent)
+//            .setVisibility(Notification.VISIBILITY_PUBLIC)
+//            .setCategory(Notification.CATEGORY_MESSAGE))
+//
+//    }
 
 }
 
