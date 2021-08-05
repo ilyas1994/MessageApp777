@@ -5,6 +5,7 @@ import View.ViewChat.ViewChat.ChatRecyclerView
 import View.ViewChat.ViewChat.FragmentChatRV
 import android.os.Handler
 import androidx.recyclerview.widget.RecyclerView
+import com.example.messageapp.MainActivity
 import com.rabbitmq.client.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
@@ -100,14 +101,16 @@ class RabbitMq(RecyclerViewAdapter:ChatRecyclerView) {
                        DeliverCallback { ConsumerTag: String?, delivery: Delivery ->
                            var message = String(delivery.body, StandardCharsets.UTF_8)
                            var s = delivery.envelope.routingKey
-
+                           var s1 = message
                            mHandler.post(Runnable {
 
                               adapter.runCatching {
 //                                   println(message)
                                    flag = false
-                                   updateList(message)
-                               }
+                                  updateList(message)
+                                  ConnectionRabbitMq.mainAct.createNotificationChannel(s1)
+                                  ConnectionRabbitMq.mainAct.nott()
+                              }
 
                                // your code to update the UI.
                            })
