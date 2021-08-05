@@ -9,9 +9,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.messageapp.MainActivity
 import com.example.messageapp.R
+
 
 
 class FragmentChatRV : Fragment() {
@@ -45,6 +49,7 @@ class FragmentChatRV : Fragment() {
 
 
         buttonSendMessage.setOnClickListener {
+
             if (ediTextChat.text.isNotEmpty()) {
                 ediTextChat.background = resources.getDrawable(R.drawable.edittextadddescription)
 
