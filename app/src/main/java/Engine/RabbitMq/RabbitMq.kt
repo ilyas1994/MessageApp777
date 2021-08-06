@@ -1,61 +1,33 @@
 package Engine.RabbitMq
 
-import View.ViewChat.ViewChat.ChatMain
-import View.ViewChat.ViewChat.ChatRecyclerView
-import View.ViewChat.ViewChat.FragmentChatRV
 import android.os.Handler
-import androidx.recyclerview.widget.RecyclerView
 import com.rabbitmq.client.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.launch
 import java.nio.charset.StandardCharsets
 
 
 
-class RabbitMq(RecyclerViewAdapter:ChatRecyclerView) {
+final class RabbitMq  {
 
         private lateinit var queueName:String
         private  var EXCHANGE_NAME:String = "ex"
-        private  var EXCHANGE_NAME_RECIVE:String = "ex"
-        private lateinit var connection:Connection
+
         private lateinit var Channel: Channel
-        private var factory:ConnectionFactory
-        private var adapter:ChatRecyclerView
+
+        private lateinit var adapter: IRecyclerViewDispatchUpdatesTo
         private var mHandler = Handler()
 
-        init {
-            adapter = RecyclerViewAdapter
-            factory = ConnectionRabbitMq.factory
-            GlobalScope.launch {
-                createConnection()
-            }
-        }
-
-        fun createConnection() {
-            try {
-                  connection = factory.newConnection()
-                  createChannel()
-                } catch (e: Exception) {
-    //                    Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
-                }
-        }
 
 
+       fun SetRecyclerViewAdapter(adapter:IRecyclerViewDispatchUpdatesTo){
+           this.adapter = adapter
+       }
 
 
-
-
-
-        private fun createChannel() {
+        suspend fun createChannel(Connetion:Connection) {
             try {
 
-                Channel = connection.createChannel()
-//                queueName = "Pixel2"
 
-//                queueName = Channel.queueDeclare("Xiaomi",false,false,false,null).queue
+                Channel = Connetion.createChannel()
                 queueName = Channel.queueDeclare("Pixel",false,false,false,null).queue
                 Channel.exchangeDeclare(EXCHANGE_NAME, "direct");
 
@@ -68,16 +40,16 @@ class RabbitMq(RecyclerViewAdapter:ChatRecyclerView) {
             }
         }
 
-    private fun Sending(){
+    suspend private fun Sending(){
         while (true) {
-            if(ConnectionRabbitMq.sendMes != ""){
-                SendMessage(ConnectionRabbitMq.sendMes)
-                ConnectionRabbitMq.sendMes = ""
+            if(ConnectionRabbitMq().sendMes != ""){
+                SendMessage(ConnectionRabbitMq().sendMes)
+                ConnectionRabbitMq().sendMes = ""
             }
         }
     }
 
-    fun SendMessage(data:String){
+    suspend  fun SendMessage(data:String){
         try {
             Channel.basicPublish(
                 EXCHANGE_NAME,
@@ -90,12 +62,8 @@ class RabbitMq(RecyclerViewAdapter:ChatRecyclerView) {
         }
     }
 
-       private fun  Listner(){
-
-//           while (true) {
+    suspend     private fun  Listner(){
                try {
-//                   Sending()
-
                    val deliverCallback =
                        DeliverCallback { ConsumerTag: String?, delivery: Delivery ->
                            var message = String(delivery.body, StandardCharsets.UTF_8)
@@ -104,12 +72,8 @@ class RabbitMq(RecyclerViewAdapter:ChatRecyclerView) {
                            mHandler.post(Runnable {
 
                               adapter.runCatching {
-//                                   println(message)
-                                   flag = false
-                                   updateList(message)
+                                   updateList(message, IRecyclerViewDispatchUpdatesTo.Type.recive)
                                }
-
-                               // your code to update the UI.
                            })
                            Channel.basicAck(delivery.envelope.deliveryTag, false)
 
@@ -126,15 +90,6 @@ class RabbitMq(RecyclerViewAdapter:ChatRecyclerView) {
 
 
                }
-//           }
-
         }
-
-
-
-
-
-
-
 
 }

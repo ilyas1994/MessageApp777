@@ -1,13 +1,52 @@
 package Engine.RabbitMq
 
+import android.app.Service
+import android.content.Intent
+import android.os.IBinder
+import com.rabbitmq.client.Channel
+import com.rabbitmq.client.Connection
 import com.rabbitmq.client.ConnectionFactory
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
-object ConnectionRabbitMq{
-    var factory =  ConnectionFactory()
+class ConnectionRabbitMq: Service() {
+
+
+   private  var rabbitmq: RabbitMq = RabbitMq()
+
     var  sendMes = ""
-    init {
-        factory.host = "192.168.0.108"
-        factory.username ="admin"
-        factory.password = "admin"
+        companion object{
+             private var instance:ConnectionRabbitMq? = null
+                fun GetInstance() = synchronized(this) {
+                    if(instance == null)
+                        instance = ConnectionRabbitMq()
+                    instance
+                }
+        }
+
+
+
+        fun SetRecyclerViewAdapter(adapter:IRecyclerViewDispatchUpdatesTo){
+            rabbitmq.SetRecyclerViewAdapter(adapter)
+        }
+
+    override fun onCreate() {
+       CreateConnection("192.168.0.108","admin","admin")
     }
+          fun CreateConnection(host:String, username:String, pass:String){
+              GlobalScope.launch {
+                  var  factory =  ConnectionFactory()
+                  factory.host = host
+                  factory.username =username
+                  factory.password = pass
+                  var connection= factory.newConnection()
+                  rabbitmq.createChannel(connection)
+              }
+          }
+
+    override fun onBind(p0: Intent?): IBinder? {
+        TODO("Not yet implemented")
+    }
+
+
 }

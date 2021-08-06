@@ -1,7 +1,11 @@
 package com.example.messageapp
 
+import Engine.RabbitMq.ConnectionRabbitMq
+import Engine.RabbitMq.RabbitMq
+import Engine.Services.ServiceForRabbitMq
 import View.ViewChat.ViewChoiseUser.FragmentChoiseUser
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -24,7 +28,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-       var flag = false
+//        ConnectionRabbitMq
+
+
+        startService(Intent(this, ConnectionRabbitMq::class.java))
 
 
         switchFragment(FragmentChoiseUser())

@@ -2,11 +2,13 @@ package View.ViewChat.ViewChat
 
 
 import Engine.RabbitMq.ConnectionRabbitMq
-import Engine.RabbitMq.RabbitMq
+import Engine.RabbitMq.IRecyclerViewDispatchUpdatesTo
+
 
 import android.bluetooth.BluetoothClass
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -59,20 +61,8 @@ class FragmentChatRV : Fragment() {
         recycler.layoutManager = LinearLayoutManager(context)
         recycler.adapter = adapter
 
-        var rabbit =  RabbitMq(adapter)
-//        var sendRabbit = SendRabbitMQ()
 
-
-
-//        SendRabbitMQ.adapter = adapter
-
-
-
-         var flag = false;
-
-
-//for (i in 0..5)
-//    adapter.updateList("ediTextChat.text.toString()",adapter)
+         ConnectionRabbitMq().SetRecyclerViewAdapter(adapter)
 
             buttonSendMessage.setOnClickListener {
 
@@ -81,9 +71,9 @@ class FragmentChatRV : Fragment() {
                     TextChat.background =
                         resources.getDrawable(R.drawable.edittextadddescription)
 
-                    adapter.flag = true
-                    ConnectionRabbitMq.sendMes= TextChat.text.toString()
-                    adapter.updateList(TextChat.text.toString())
+
+                    ConnectionRabbitMq().sendMes= TextChat.text.toString()
+                    adapter.updateList(TextChat.text.toString(), IRecyclerViewDispatchUpdatesTo.Type.send)
 
                      TextChat.text.clear()
 //                    flag = false
