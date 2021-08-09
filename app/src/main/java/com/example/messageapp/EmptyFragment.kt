@@ -1,6 +1,5 @@
 package com.example.messageapp
 
-import View.ViewChat.ViewChoiseUser.FragmentChoiseUser
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater

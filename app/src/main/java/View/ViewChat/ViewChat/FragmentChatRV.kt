@@ -61,8 +61,20 @@ class FragmentChatRV : Fragment() {
         recycler.layoutManager = LinearLayoutManager(context)
         recycler.adapter = adapter
 
+        var rabbit =  RabbitMq(adapter)
+//        var sendRabbit = SendRabbitMQ()
 
-         ConnectionRabbitMq().SetRecyclerViewAdapter(adapter)
+
+
+//        SendRabbitMQ.adapter = adapter
+
+
+
+         var flag = false;
+
+
+//for (i in 0..5)
+//    adapter.updateList("ediTextChat.text.toString()",adapter)
 
             buttonSendMessage.setOnClickListener {
 
@@ -71,9 +83,9 @@ class FragmentChatRV : Fragment() {
                     TextChat.background =
                         resources.getDrawable(R.drawable.edittextadddescription)
 
-
-                    ConnectionRabbitMq().sendMes= TextChat.text.toString()
-                    adapter.updateList(TextChat.text.toString(), IRecyclerViewDispatchUpdatesTo.Type.send)
+                    adapter.flag = true
+                    ConnectionRabbitMq.sendMes= TextChat.text.toString()
+                    adapter.updateList(TextChat.text.toString())
 
                      TextChat.text.clear()
 //                    flag = false

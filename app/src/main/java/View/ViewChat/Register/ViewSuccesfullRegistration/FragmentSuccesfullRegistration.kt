@@ -1,4 +1,4 @@
-package View.ViewChat.ViewSuccesfullRegistration
+package View.ViewChat.Register.ViewSuccesfullRegistration
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import com.example.messageapp.MainActivity
-import com.example.messageapp.Navigation_menu
 import com.example.messageapp.R
 
 

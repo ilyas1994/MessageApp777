@@ -1,6 +1,5 @@
 package View.ViewChat.ViewCustomer
 
-import View.ViewChat.ViewSuccesfullRegistration.FragmentSuccesfullRegistration
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -59,7 +58,7 @@ class FragmentCustomer : Fragment() {
         buttonSaveCheckBox.setOnClickListener {
                 textViewChoiseProductSelected.text = mutableListAdd.toString()
             Toast.makeText(context, "Сохранено", Toast.LENGTH_SHORT).show()
-            myAct.switchFragment(FragmentSuccesfullRegistration())
+//            myAct.switchFragment(FragmentSuccesfullRegistration())
         }
     }
 
