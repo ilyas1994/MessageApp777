@@ -1,6 +1,5 @@
 package com.example.messageapp
 
-import View.ViewChat.CreateNewAppDescription.FragmentCreateNewAppDescription
 import View.ViewChat.ViewChat.FragmentChatRV
 import View.ViewChat.ViewCreateNewApp.FragmentCreateNewApp
 import View.ViewChat.ViewCustomer.FragmentCustomer
@@ -55,7 +54,7 @@ class Navigation_menu : Fragment() {
             replaceFragment(FragmentCreateNewApp())
         }
         nav_favorite.setOnClickListener {
-
+            Toast.makeText(context, "THISSSS", Toast.LENGTH_SHORT).show()
         }
         nav_setting.setOnClickListener {
             replaceFragment(FragmentCustomer())

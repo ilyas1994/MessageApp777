@@ -1,6 +1,5 @@
 package View.ViewChat.ViewMyNoticeForSupplier
 
-import View.ViewChat.ViewChoiseUser.FragmentChoiseUser
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -31,7 +30,7 @@ class ViewMyNoniceForSupplier : Fragment() {
         mainAct = (activity as MainActivity)
         val imageviewButtonBack: ImageView = view.findViewById(R.id.imageviewButtonBack)
         imageviewButtonBack.setOnClickListener {
-            mainAct.switchFragment(FragmentChoiseUser())
+//            mainAct.switchFragment(FragmentChoiseUser())
 
         }
 

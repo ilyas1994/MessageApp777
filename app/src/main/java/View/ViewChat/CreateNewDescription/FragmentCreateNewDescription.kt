@@ -1,4 +1,4 @@
-package View.ViewChat.CreateNewAppDescription
+package View.ViewChat.CreateNewDescription
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,7 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.messageapp.R
 
 
-class FragmentCreateNewAppDescription : Fragment() {
+class FragmentCreateNewDescription : Fragment() {
 
     private lateinit var mainLinear: LinearLayout
     private lateinit var linearCreateNewApp: LinearLayout

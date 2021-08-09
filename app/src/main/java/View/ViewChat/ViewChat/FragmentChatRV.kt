@@ -60,27 +60,15 @@ class FragmentChatRV : Fragment() {
         recycler.adapter = adapter
 
         var rabbit =  RabbitMq(adapter)
-//        var sendRabbit = SendRabbitMQ()
-
-
-
-//        SendRabbitMQ.adapter = adapter
-
-
 
          var flag = false;
 
-
-//for (i in 0..5)
-//    adapter.updateList("ediTextChat.text.toString()",adapter)
-
             buttonSendMessage.setOnClickListener {
-
+                recycler.scrollToPosition(adapter.itemCount)
 
                 if (TextChat.text.isNotEmpty()) {
                     TextChat.background =
                         resources.getDrawable(R.drawable.edittextadddescription)
-
                     adapter.flag = true
                     ConnectionRabbitMq.sendMes= TextChat.text.toString()
                     adapter.updateList(TextChat.text.toString())

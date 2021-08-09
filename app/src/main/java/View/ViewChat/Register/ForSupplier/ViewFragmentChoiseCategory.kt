@@ -1,15 +1,19 @@
-package com.example.messageapp
+package View.ViewChat.Register.ForSupplier
 
-import View.ViewChat.ViewChoiseUser.FragmentChoiseUser
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import android.widget.Button
+import com.example.messageapp.EmptyFragment
+import com.example.messageapp.MainActivity
+import com.example.messageapp.R
+import com.example.messageapp.Router
 
 
-class FragmentInstruction : Fragment() {
+class ViewFragmentChoiseCategory : Fragment() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,17 +25,17 @@ class FragmentInstruction : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_instruction, container, false)
+        return inflater.inflate(R.layout.fragment_view_choise_category, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val imageViewClose = view.findViewById<ImageView>(R.id.imageViewClose)
-        imageViewClose.setOnClickListener {
-//
-            val nextFragment = Router().nextFragment(EmptyFragment())
+        val buttonSaveCategory: Button = view.findViewById(R.id.buttonSaveCategory)
+
+        buttonSaveCategory.setOnClickListener {
+            val nextFragment = Router().nextFragment(ViewFragmentCompletionOfRegistration())
             requireActivity().supportFragmentManager.beginTransaction().apply {
-                replace(R.id.fragmentInstruction, nextFragment)
+                replace(R.id.emptyFragment, nextFragment, null)
                 commit()
             }
         }

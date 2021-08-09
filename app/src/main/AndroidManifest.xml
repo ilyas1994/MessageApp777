@@ -11,6 +11,13 @@
         android:theme="@style/Theme.MessageApp"
         android:usesCleartextTraffic="true"
         >
+        <receiver android:name=".QWE">
+
+            <intent-filter>
+                <action android:name="android.net.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
