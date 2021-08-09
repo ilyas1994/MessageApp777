@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.messageapp">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
@@ -17,6 +18,12 @@
                 <action android:name="android.net.CONNECTIVITY_CHANGE"/>
             </intent-filter>
         </receiver>
+
+        android:usesCleartextTraffic="true">
+        <service
+            android:name="Engine.RabbitMq.ConnectionRabbitMq"
+            android:enabled="true">
+           </service>
 
         <activity android:name=".MainActivity">
             <intent-filter>

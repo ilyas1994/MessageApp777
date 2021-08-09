@@ -1,15 +1,31 @@
 package Engine.RabbitMq
 
-import com.example.messageapp.MainActivity
 import com.rabbitmq.client.ConnectionFactory
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
-object ConnectionRabbitMq{
-    var factory =  ConnectionFactory()
-    lateinit var mainAct:MainActivity
+class ConnectionRabbitMq: Service() {
+
+
+   private  var rabbitmq: RabbitMq = RabbitMq()
+
     var  sendMes = ""
-    init {
-        factory.host = "192.168.0.108"
-        factory.username ="admin"
-        factory.password = "admin"
+        companion object{
+             private var instance:ConnectionRabbitMq? = null
+                fun GetInstance() = synchronized(this) {
+                    if(instance == null)
+                        instance = ConnectionRabbitMq()
+                    instance
+                }
+        }
+
+
+
+        fun SetRecyclerViewAdapter(adapter:IRecyclerViewDispatchUpdatesTo){
+            rabbitmq.SetRecyclerViewAdapter(adapter)
+        }
+
+    override fun onCreate() {
+       CreateConnection("192.168.0.108","admin","admin")
     }
 }
