@@ -20,6 +20,7 @@ final class RabbitMq  {
 
        fun SetRecyclerViewAdapter(adapter:IRecyclerViewDispatchUpdatesTo){
            this.adapter = adapter
+           //jhkhj
        }
 
 
