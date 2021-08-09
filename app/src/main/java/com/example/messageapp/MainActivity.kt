@@ -1,6 +1,13 @@
 package com.example.messageapp
 
+import Engine.RabbitMq.ConnectionRabbitMq
+import View.ViewChat.Register.ViewChoiseUser.FragmentChoiseUser
 import View.ViewChat.ViewChoiseUser.FragmentChoiseUser
+import android.annotation.SuppressLint
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -56,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         if (fragmentz == 1) {
 
             supportFragmentManager.beginTransaction().apply {
-                replace(R.id.constraintFragment, Navigation_menu())
+                replace(R.id.emptyFragment, Navigation_menu())
                 commit()
             }
         }
@@ -64,7 +71,7 @@ class MainActivity : AppCompatActivity() {
 
     fun switchFragment(ft: Fragment) {
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.constraintFragment, ft)
+            replace(R.id.emptyFragment, ft)
             addToBackStack(null)
             commit()
         }
@@ -81,7 +88,7 @@ class MainActivity : AppCompatActivity() {
                 editor.putInt(SUCCESFULL_REGISTER_SAVE, fragmentz)
                 editor.apply()
                 supportFragmentManager.beginTransaction().apply {
-                    replace(R.id.constraintFragment, Navigation_menu())
+                    replace(R.id.emptyFragment, Navigation_menu())
                     commit()
                 }
             }
