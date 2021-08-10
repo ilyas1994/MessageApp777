@@ -10,6 +10,8 @@ import android.bluetooth.BluetoothClass
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -61,43 +63,36 @@ class FragmentChatRV : Fragment() {
         recycler.layoutManager = LinearLayoutManager(context)
         recycler.adapter = adapter
 
-        var rabbit =  RabbitMq(adapter)
-//        var sendRabbit = SendRabbitMQ()
+        ConnectionRabbitMq().SetRecyclerViewAdapter(adapter);
 
 
-
-//        SendRabbitMQ.adapter = adapter
-
-
-
-         var flag = false;
-
-
-//for (i in 0..5)
-//    adapter.updateList("ediTextChat.text.toString()",adapter)
 
             buttonSendMessage.setOnClickListener {
 
-
-                if (TextChat.text.isNotEmpty()) {
+//                if (TextChat.text.isNotEmpty()) {
                     TextChat.background =
                         resources.getDrawable(R.drawable.edittextadddescription)
 
-                    adapter.flag = true
-                    ConnectionRabbitMq.sendMes= TextChat.text.toString()
-                    adapter.updateList(TextChat.text.toString())
+                     adapter.updateList(TextChat.text.toString(),IRecyclerViewDispatchUpdatesTo.Type.send)
+
+
+
+                         GlobalScope.launch {
+                             ConnectionRabbitMq().runCatching {
+                                 SendMessage(TextChat.text.toString())
+                             }
+                         }
+
+
+
 
                      TextChat.text.clear()
-//                    flag = false
-
-
-                } else {
-
-                    TextChat.background = resources.getDrawable(R.drawable.edittextchatisnull)
-                    Toast.makeText(context, "Введите текст", Toast.LENGTH_SHORT).show()
-                }
+//                } else {
+//
+//                    TextChat.background = resources.getDrawable(R.drawable.edittextchatisnull)
+//                    Toast.makeText(context, "Введите текст", Toast.LENGTH_SHORT).show()
+//                }
             }
-
         }
 
     val test= { mes:String ->

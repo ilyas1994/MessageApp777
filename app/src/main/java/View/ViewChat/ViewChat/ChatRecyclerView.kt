@@ -29,19 +29,19 @@ class ChatRecyclerView: RecyclerView.Adapter<ChatRecyclerView.ChatHolder>(), IRe
 
                     var it = item
 
-                            fun bind(dataClassChat: String, t:LinearLayout.LayoutParams){
+                            fun bind(dataClassChat: String){
 //                    fun bind(dataClassChat: String) {
                              var textview1 = it.findViewById<TextView>(R.id.textviewIn)
 
-                                            textview1.layoutParams = t
-
-                                             if(t.gravity == Gravity.LEFT){
-                                                 textview1.setPadding(10, 0, 0, 0)
-                                             }else if(t.gravity == Gravity.RIGHT){
-                                                 textview1.setPadding(0, 0, 10, 0)
-                                             }
-
-                        println( textview1.gravity);
+//                                            textview1.layoutParams = t
+//
+//                                             if(t.gravity == Gravity.LEFT){
+//                                                 textview1.setPadding(10, 0, 0, 0)
+//                                             }else if(t.gravity == Gravity.RIGHT){
+//                                                 textview1.setPadding(0, 0, 10, 0)
+//                                             }
+//
+//                        println( textview1.gravity);
                                     textview1.text = dataClassChat
                     }
                 }
@@ -50,27 +50,27 @@ class ChatRecyclerView: RecyclerView.Adapter<ChatRecyclerView.ChatHolder>(), IRe
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_chat, parent, false)
 
-        var params =  LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        )
-
-        if(SendOrReciveType == IRecyclerViewDispatchUpdatesTo.Type.recive) {
-            params.gravity = Gravity.RIGHT
-
-        }
-
-        if(SendOrReciveType == IRecyclerViewDispatchUpdatesTo.Type.send) {
-            params.gravity = Gravity.LEFT
-
-        }
-
-        addlistParams.add(params)
+//        var params =  LinearLayout.LayoutParams(
+//            LinearLayout.LayoutParams.WRAP_CONTENT,
+//            LinearLayout.LayoutParams.WRAP_CONTENT
+//        )
+//
+//        if(SendOrReciveType == IRecyclerViewDispatchUpdatesTo.Type.recive) {
+//            params.gravity = Gravity.RIGHT
+//
+//        }
+//
+//        if(SendOrReciveType == IRecyclerViewDispatchUpdatesTo.Type.send) {
+//            params.gravity = Gravity.LEFT
+//
+//        }
+//
+//        addlistParams.add(params)
         return ChatHolder(view,this)
     }
 
     override fun onBindViewHolder(holder: ChatHolder, position: Int) {
-        holder.bind(addlist[position], addlistParams[position])
+        holder.bind(addlist[position])
 
 //        holder.bind(addlist[position])
     }

@@ -17,7 +17,7 @@ class qwe1: QWE() {
 
 
     override fun onReceive(context: Context?, intent: Intent?) {
-        ConnectionRabbitMq.mainAct.nott()
+//        ConnectionRabbitMq.mainAct.nott()
 
     }
 

@@ -6,5 +6,6 @@ interface IRecyclerViewDispatchUpdatesTo {
     enum class Type{
         send,recive
     }
+
     fun updateList(s:String, SendOrReciveType: Type)
 }

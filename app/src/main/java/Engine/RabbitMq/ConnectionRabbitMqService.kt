@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 import java.nio.charset.StandardCharsets
 
-class ConnectionRabbitMq: Service() {
+class ConnectionRabbitMqService: Service() {
 
 
 
@@ -25,15 +25,15 @@ class ConnectionRabbitMq: Service() {
 
         companion object{
              private lateinit  var Channel: Channel
-             private lateinit   var connection : Connection
              private lateinit var adapter: IRecyclerViewDispatchUpdatesTo
              private lateinit var notify:Notify
+
              private var notifyMes:String = ""
 
-             private var instance:ConnectionRabbitMq? = null
+             private var instance:ConnectionRabbitMqService? = null
                 fun GetInstance() = synchronized(this) {
                     if(instance == null) {
-                        instance = ConnectionRabbitMq()
+                        instance = ConnectionRabbitMqService()
 
 
                     }
@@ -48,6 +48,9 @@ class ConnectionRabbitMq: Service() {
             println(adapter.toString());
         }
 
+       fun SetNotify(n:Notify){
+           notify = n
+       }
 
 
 
@@ -57,14 +60,15 @@ class ConnectionRabbitMq: Service() {
                 factory.host = host
                 factory.username =username
                 factory.password = pass
-                 connection = factory.newConnection()
+                var connection = factory.newConnection()
 
                 createChannel(connection)
             }
         }
 
-    fun onCreates() {
-//        Toast.makeText(this, "OnCreate", Toast.LENGTH_LONG).show()
+    override  fun onCreate() {
+       Notify.builder = notify.startForeground()
+        Toast.makeText(this, "OnCreate", Toast.LENGTH_LONG).show()
         CreateConnection("192.168.0.108","admin","admin")
     }
 
@@ -74,8 +78,12 @@ class ConnectionRabbitMq: Service() {
         TODO("Not yet implemented")
     }
 
-    fun StopRabbitMq(){
-        connection.close()
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+//        notify.createBuilder()
+        startForeground(1, Notify.builder)
+        Toast.makeText(this, "onStartCommand", Toast.LENGTH_SHORT).show()
+        return START_NOT_STICKY
     }
 
   private fun createChannel(connection:Connection){
@@ -93,7 +101,7 @@ class ConnectionRabbitMq: Service() {
         try {
 
             println(data)
-           Channel.basicPublish(
+            Channel.basicPublish(
                 EXCHANGE_NAME,
                 "X1",
 //                "X2",
@@ -113,25 +121,34 @@ class ConnectionRabbitMq: Service() {
             val deliverCallback =
                 DeliverCallback { ConsumerTag: String?, delivery: Delivery ->
                     var message = String(delivery.body, StandardCharsets.UTF_8)
-                    notifyMes = message
+
                     var s = delivery.envelope.routingKey
 
 //
-//                    notifySingle.GetNotify().setFragment(FragmentChatRV())
-//                    notifySingle.GetNotify().createNotificationChannel(notifyMes)
-//                          notifySingle.GetNotify().createNotify()
-
-                    Handler(Looper.getMainLooper()).post(Runnable {
-                        adapter.runCatching {
-                         updateList(message, IRecyclerViewDispatchUpdatesTo.Type.recive)
+//                    Handler(Looper.getMainLooper()).post(Runnable {
+//                        notify.runCatching {
 
 
+                    notify.SendMessageForIntent(message)
+                    notify.createNotify()
 
 
-                        }
+//                        }
 //
-                    })
-                    Channel.basicAck(delivery.envelope.deliveryTag, false)
+//                    })
+
+
+//                    Handler(Looper.getMainLooper()).post(Runnable {
+//                        adapter.runCatching {
+//                         updateList(message, IRecyclerViewDispatchUpdatesTo.Type.recive)
+//
+//
+//
+//
+//                        }
+////
+//                    })
+//                    Channel.basicAck(delivery.envelope.deliveryTag, false)
                 }
 
 
