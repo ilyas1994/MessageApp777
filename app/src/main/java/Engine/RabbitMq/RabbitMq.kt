@@ -1,16 +1,9 @@
 package Engine.RabbitMq
 
-import View.ViewChat.ViewChat.ChatMain
 import View.ViewChat.ViewChat.ChatRecyclerView
-import View.ViewChat.ViewChat.FragmentChatRV
 import android.os.Handler
-import androidx.recyclerview.widget.RecyclerView
-import com.example.messageapp.MainActivity
 import com.rabbitmq.client.*
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import java.nio.charset.StandardCharsets
 
@@ -108,8 +101,9 @@ class RabbitMq(RecyclerViewAdapter:ChatRecyclerView) {
 //                                   println(message)
                                    flag = false
                                   updateList(message)
-                                  ConnectionRabbitMq.mainAct.createNotificationChannel(s1)
-                                  ConnectionRabbitMq.mainAct.nott()
+//                                  ConnectionRabbitMq.mainAct.createNotificationChannel(s1)
+//                                  ConnectionRabbitMq.mainAct.nott()
+                                  print("this errorrrrrrr")
                               }
 
                                // your code to update the UI.
